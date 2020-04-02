@@ -207,9 +207,26 @@ function isItAnApple(strings) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
  */
-function removeApple( /* code here */ ) {
-    /* code here */
+function removeApple(strings) {
+    let newArr = strings.filter(function(element) {
+        if (element !== 'apple') {
+            return element;
+        }
+
+
+    });
+    return newArr;
 }
+/* function removeApple(strings) {
+    let newArr = strings.forEach(function(element, index) {
+        if (strings.element === 'apple') {
+            newArr.push(strings.element);
+        }
+
+    });
+    return newArr;
+}  */
+
 
 /**
  * ### Challenge `stringSmash`
@@ -226,6 +243,7 @@ function removeApple( /* code here */ ) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
  */
+
 function stringSmash(strings) {
     let smashed = strings.reduce((str, current) => {
         return str + current;
@@ -248,8 +266,11 @@ function stringSmash(strings) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
  */
-function getFullNames( /* CODE HERE */ ) {
-    /* CODE HERE */
+function getFullNames(runners) {
+    const newArr = runners.map((name) => {
+        return `${name.last_name}, ${name.first_name}`;
+    });
+    return newArr;
 }
 
 /**
@@ -264,8 +285,11 @@ function getFullNames( /* CODE HERE */ ) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
  */
-function firstNamesAllCaps( /* CODE HERE */ ) {
-    /* CODE HERE */
+function firstNamesAllCaps(runners) {
+    let newArr = runners.map((item) => {
+        return `${item.first_name}`.toUpperCase();
+    })
+    return newArr;
 }
 
 /**
@@ -282,8 +306,11 @@ function firstNamesAllCaps( /* CODE HERE */ ) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
  */
-function getRunnersByTShirtSize( /* CODE HERE */ ) {
-    /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+    let newArr = runners.filter((item) => {
+        return item.shirt_size === tShirtSize;
+    })
+    return newArr;
 }
 
 /**
@@ -297,8 +324,11 @@ function getRunnersByTShirtSize( /* CODE HERE */ ) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
  */
-function tallyUpDonations( /* CODE HERE */ ) {
-    /* CODE HERE */
+function tallyUpDonations(runners) {
+    const newArr = runners.reduce((item, index) => {
+        return item += index.donation;
+    }, 0);
+    return newArr;
 }
 
 /////////////// CLOSURES ///////////////
@@ -311,9 +341,9 @@ function tallyUpDonations( /* CODE HERE */ ) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * the first one will keep counting, the second one will only count once unil it is reinvoked
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * the first one uses a closure because it returns a function
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
  */
@@ -356,8 +386,28 @@ function counter2() {
  * counter() // should return 0
  * etc
  */
-function counterMakerWithLimit( /* CODE HERE */ ) {
-    /* CODE HERE */
+function counterMakerWithLimit() {
+
+    let count = 0;
+    return function counter() {
+        if (count < 4) {
+            return count++;
+        } else if (count === 3) {
+            return count = 0;
+        }
+    }
+
+
+    /* return function counter() {
+
+        if (count < 4) {
+            return count++;
+        } else {
+            return count = 0;
+        }
+
+    }; */
+
 }
 
 /////////////// END OF CHALLENGE ///////////////
